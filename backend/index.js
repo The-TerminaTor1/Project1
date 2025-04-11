@@ -1,17 +1,18 @@
 const express = require('express');
 const cors = require('cors');
-const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-const database = require('./config/database');
-const errorMiddleware = require('./middleware/errorMiddleware');
+const dotenv = require('dotenv');
+const database = require('./Config/Database');
+const errorMiddleware = require('./Middleware/ErrorMiddleware');
 
 // Load environment variables
 const dotenvResult = dotenv.config();
+
 if (dotenvResult.error) {
-  console.error("❌ Failed to load .env file:", dotenvResult.error);
-  process.exit(1);
+    console.error("❌ Failed to load .env file:", dotenvResult.error);
+    process.exit(1);
 } else {
-  console.log("✅ .env file loaded successfully");
+    console.log("✅ .env file loaded successfully");
 }
 
 const app = express();
@@ -19,23 +20,20 @@ console.log("🚀 Starting Express server setup...");
 
 app.use(cors());
 app.use(express.json());
-console.log("🧩 Middleware configured");
 
 // Connect to MongoDB
 database.connectDB();
 
-// Routes
 const authRoutes = require('./Routes/AuthRoutes');
 app.use('/api', authRoutes);
-console.log("📦 Auth routes loaded at /api");
 
 // Error handler
 app.use(errorMiddleware);
 
 // 404 handler
 app.use((req, res) => {
-  res.status(404).json({ message: 'Route not found' });
-});
+    res.status(404).json({ message: 'Route not found' });
+  });
 
 // Start server
 const port = process.env.PORT || 3000;

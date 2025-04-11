@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { FaEye, FaEyeSlash, FaEnvelope, FaLock } from 'react-icons/fa';
+import KomplianceLogo from '../../assets/Kompliancenow_logo.jpeg';
 
 const Login = () => {
   const [form, setForm] = useState({ email: '', password: '' });
@@ -17,6 +18,11 @@ const Login = () => {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-lg">
         <div className="text-center mb-6">
+          <img
+            src={KomplianceLogo}
+            alt="Kompliance Logo"
+            className="mx-auto mb-4 w-24 h-auto"
+          />
           <h1 className="text-2xl font-bold">Login to Your Account</h1>
           <p className="text-sm text-gray-500">Compliance made simple and secure</p>
         </div>
