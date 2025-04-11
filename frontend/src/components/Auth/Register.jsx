@@ -1,8 +1,9 @@
 import { useState } from 'react';
 import { FaEye, FaEyeSlash, FaEnvelope, FaLock, FaUser } from 'react-icons/fa';
+import KomplianceLogo from '../../assets/Kompliancenow_logo.jpeg';
 
 const Register = () => {
-  const [form, setForm] = useState({ name: '', email: '', password: '' }); // firstname and secondname
+  const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) =>
@@ -16,6 +17,11 @@ const Register = () => {
   return (
     <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
       <div className="max-w-md w-full bg-white p-8 rounded-2xl shadow-lg">
+        {/* 🔽 Logo */}
+        <div className="flex justify-center mb-4">
+          <img src={KomplianceLogo} alt="Kompliance Logo" className="h-14" />
+        </div>
+
         <div className="text-center mb-6">
           <h1 className="text-2xl font-bold">Create Your Account</h1>
           <p className="text-sm text-gray-500">Secure access to compliance tools</p>
