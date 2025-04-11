@@ -1,15 +1,16 @@
 const express = require('express');
 const router = express.Router();
-
-// Import the controller
 const authController = require('../Controllers/AuthController');
+const authMiddleware = require('../Middleware/authMiddleware');
 
-// Use the controller functions
-router.post('/forgot-password', authController.forgotPassword);
-router.post('/reset-password/:token', authController.resetPasswordWithToken);
+// Public routes
+router.post('/register', authController.registerUser);
+router.post('/login', authController.loginUser);
+router.post('/send-otp', authController.sendOtp);
+router.post('/verify-otp', authController.verifyOtp);
 router.post('/reset-password', authController.resetPassword);
 
-//adding register and login routes
-router.post('/register', authController.register);
-router.post('/login', authController.login);
+// Protected route (example)
+router.get('/profile', authMiddleware, authController.getProfile);
+
 module.exports = router;

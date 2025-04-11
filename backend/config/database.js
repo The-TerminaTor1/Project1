@@ -1,14 +1,14 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose") ;
+require("dotenv").config() ;
 
-const connectToMongo = async () => {
-  try {
-    const mongoURI =
-      "mongodb+srv://admin1:admin1@cluster0.te9ltpy.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
-    await mongoose.connect(mongoURI);
-    console.log("Connected to MongoDB");
-  } catch (error) {
-    console.error("Error connecting to MongoDB:", error.message);
-  }
-};
+const connectDB = () =>{
+    mongoose.connect(process.env.MONGO_URI)
+    .then(console.log("Connect to MongoDB successfully"))
+    .catch((error)=>{
+        console.log("Connect to MongoDB failed")
+        console.log(error)
+        process.exit(1) ;
+    })
+}
 
-module.exports = connectToMongo;
+module.exports = {connectDB};
